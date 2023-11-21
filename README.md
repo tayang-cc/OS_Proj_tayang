@@ -3,6 +3,8 @@
 **@author-tayang//刘洋**
 **@ContactInfo:tayang.cc@gmail.com**
 
+**Github链接如下：https://github.com/tayang-cc/OS_Proj_tayang.git**
+
 *该项目仅仅实现基于优先级的两种进程调度算法，其余四种不支持*
 
 [TOC]
