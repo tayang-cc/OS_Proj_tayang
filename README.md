@@ -1,7 +1,8 @@
 # 基于优先级的非抢占/抢占进程调度算法模拟程序
 
-**@author-tayang//刘洋**
-**@ContactInfo:tayang.cc@gmail.com**
+**author-tayang//刘洋**
+**ContactInfo:tayang.cc@gmail.com**
+**2023Fall 操作系统课程设计**
 
 **Github链接如下：https://github.com/tayang-cc/OS_Proj_tayang.git**
 
@@ -25,7 +26,7 @@
 
 1. 项目使用IDEA_2022.2.5完成。
 
-2. 在本项目中，为IDEA添加了JFormDesigner插件，制作与修改客户端各个页面时需要用到这个插件。插件的安装及破解请自行百度。（后续会考虑出教程）
+2. 在本项目中，为IDEA添加了JFormDesigner插件，制作与修改客户端各个页面时需要用到这个插件。
 
 3. JDK版本为1.8_211。
 

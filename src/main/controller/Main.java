@@ -7,7 +7,7 @@ import java.util.Scanner;
  * @Description:
  */
 public class Main {
-
+    // 内存分配模拟程序
     public static void main(String[] args) {
         Memory memory = null;
         Scanner in = new Scanner(System.in);

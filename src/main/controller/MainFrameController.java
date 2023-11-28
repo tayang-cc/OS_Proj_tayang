@@ -74,7 +74,7 @@ public class MainFrameController {
     private OutputProcessTableModel outputProcessTableModel = new OutputProcessTableModel();
 
     // 当前时间
-    volatile private int currentTime=0;
+    volatile private int currentTime = 0;
     // 就绪队列
     private List<ProcessData> readyProcessQueue = new ArrayList<>();
     // 阻塞队列
@@ -83,7 +83,6 @@ public class MainFrameController {
     private List<ProcessData> tempProcessQueue = new ArrayList<>();
     // 记录已完成进程
     private List<ProcessData> finishProcessList = new ArrayList<>();
-
     // 当前执行进程
     private ProcessData currentProcess = null;
     // 打印机数目
@@ -96,15 +95,12 @@ public class MainFrameController {
         mainFrame = new MainFrame();
         initCompoents();
         initListeners();
-
         // 定义时钟
         timer = new Timer(1000, new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 // 当前进程剩余执行时间减一
-                if (currentProcess != null)
-                {
+                if (currentProcess != null) {
                     currentProcess.subMoreTime();
                 }
                 // 暂时记录因资源不足暂时无法创建的进程
@@ -135,7 +131,6 @@ public class MainFrameController {
                 }
                 // 重新按到达时间排序
                 ProcessSort.sortByArriveTime(tempProcessQueue);
-
                 // 当前cpu空闲直接取就绪队列队首进程
                 if (currentProcess == null) {
                     if (readyProcessQueue.size() > 0) {
@@ -159,7 +154,7 @@ public class MainFrameController {
                         while (tempProcessQueue.size() > 0) {
                             if (tempProcessQueue.get(0).getArriveTime() <= currentTime) {
                                 // 首先为到达进程分配资源，如资源不够则继续等待
-                                if ( curPrinterNum >= tempProcessQueue.get(0).getPrinterReq()) {
+                                if (curPrinterNum >= tempProcessQueue.get(0).getPrinterReq()) {
                                     curPrinterNum -= tempProcessQueue.get(0).getPrinterReq();
                                     if (selectNoGrab.isSelected()) {
                                         // 非抢占式优先级调度
@@ -216,7 +211,7 @@ public class MainFrameController {
             currentProcess.setStatus(ProcessStatus.RUNNING);
             // 记录开始执行时间
             if (currentProcess.getBeginTime() == -1)
-                currentProcess.setBeginTime(currentTime-1);
+                currentProcess.setBeginTime(currentTime - 1);
 
         }
     }
@@ -256,9 +251,7 @@ public class MainFrameController {
                     curPrinterNum += currentProcess.getPrinterReq();
 
                     currentProcess = null;
-                }
-                else
-                {
+                } else {
                     currentProcess.setStatus(ProcessStatus.READY);
                     readyProcessQueue.add(currentProcess);
                 }
@@ -280,6 +273,7 @@ public class MainFrameController {
                 ProcessSort.sortByPriority(readyProcessQueue);
             }
         } else {
+            //当前无处理进程
             currentProcess = process;
             currentProcess.setStatus(ProcessStatus.RUNNING);
             // 记录开始执行时间
@@ -314,7 +308,7 @@ public class MainFrameController {
                 }
 
                 // 创建进程对象
-                ProcessData processData = new ProcessData(processName, arrive_time, serve_time, priority,printerReq);
+                ProcessData processData = new ProcessData(processName, arrive_time, serve_time, priority, printerReq);
                 tempProcessQueue.add(processData);
                 // 到达时间排序
                 ProcessSort.sortByArriveTime(tempProcessQueue);
@@ -377,6 +371,7 @@ public class MainFrameController {
                     blockProcessTable.updateUI();
                     currentProcess = null;
                     // 阻塞后当前进程为空 -- 可能引发进程调度
+                    //调度就绪队列队首进程
                     dispatchQueueFirst();
                     curProcessTableModel.setCurrentProcess(currentProcess);
                     currentProcessTable.updateUI();
@@ -542,12 +537,12 @@ public class MainFrameController {
         serveTimeJFT = mainFrame.getServeTimeJFT();
         printerReqJFT = mainFrame.getPrinterReqJFT();
         newProcessBtn = mainFrame.getNewProcessBtn();
-        loadFileBtn=mainFrame.getLoadFileBtn();
+        loadFileBtn = mainFrame.getLoadFileBtn();
         selectGrab = mainFrame.getGrabRadioBtnButton2();
         selectNoGrab = mainFrame.getNoGrabRadioBtn();
         startBtn = mainFrame.getStartBtn();
         currentProcessTable = mainFrame.getCurrentProcessTable();
-        createProcessTable=mainFrame.getCreateProcessTable();
+        createProcessTable = mainFrame.getCreateProcessTable();
         blockBtn = mainFrame.getBlockBtn();
         pauseBtn = mainFrame.getPauseBtn();
         continueBtn = mainFrame.getContinueBtn();
@@ -582,7 +577,7 @@ public class MainFrameController {
 
         // 设置输入队列
 
-        setTableModel(createProcessTable,inputProcessTableModel);
+        setTableModel(createProcessTable, inputProcessTableModel);
     }
 
     public void showMainFrameWindow() {
